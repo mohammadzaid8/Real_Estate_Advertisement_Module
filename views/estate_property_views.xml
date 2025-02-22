@@ -40,6 +40,10 @@
         <field name="model">estate_property</field>
         <field name="arch" type="xml">
             <form string="Test" >
+                <header>
+                    <button name="sold_property" type="object" string="SOLD"/>
+                    <button name="cancel_property" type="object" string="Cancel"/>
+                </header>
                 <sheet>
                     <field name="name" class="fs-1 m-3"/>  
                     <group>
@@ -47,15 +51,13 @@
                     </group>
                              
                     <group class="ms-2">
-                        <group>
-                                <field name="property_type_id"/>
-                                <field name="postcode"/>
-                                <field name="date_availability"/>
-                        </group>
-                        <group>
-                                <field name="expected_price"/>
-                                <field name="selling_price"/>
-                        </group>
+                        <field name="state" String="Status"/>
+                        <field name="property_type_id"/>
+                        <field name="postcode"/>
+                        <field name="date_availability"/>
+                        <field name="expected_price"/>
+                        <field name="selling_price"/>
+                        <field name="best_price"/>
 
                     </group>
 
@@ -71,7 +73,6 @@
                                 <field name="garden_area"/>
                                 <field name="garden_orientation"/>
                                 <field name="total_area"/>
-                                <field name="best_price"/>
                             </group>
                             
                         </page>
@@ -90,6 +91,10 @@
                                     <list string="Offers" >
                                         <field name="price" string="Price"/>
                                         <field name="partner_id" string="Partner"/>
+                                        <field name="validity" String="Validity(Days)"/>
+                                        <field name="date_deadline" String="Deadline"/>
+                                        <button name="buyer_conform" type="object" icon="fa-check" title="Accept"/>
+                                        <button name="cancel_buyer" type="object" icon="fa-times" title="Refuse"/>
                                         <field name="status" string="Status"/>
                                     </list>
                                 </field>  
