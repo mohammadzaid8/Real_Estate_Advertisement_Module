@@ -6,31 +6,23 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <record id="estate_model_action_property_type" model="ir.actions.act_window">
-        <field name="name">Property Types</field>
-        <field name="res_model">estate_property_type</field>
-        <field name="view_mode">list,form</field>
-    </record>
-
-    <record id="estate_model_action_property_tag" model="ir.actions.act_window">
-        <field name="name">Property Tag</field>
-        <field name="res_model">estate_property_tag</field>
-        <field name="view_mode">list,form</field>
-    </record>
-
-
     <record id="estate_model_action_list" model="ir.ui.view">
         <field name="name">estate.model.list</field>
         <field name="model">estate_property</field>
         <field name="arch" type="xml">
-            <list string="Channel" >
+            <list string="Channel" decoration-success="state == 'Offer Received' or state == 'Offer Accepted'" 
+                                   decoration-muted="state == 'Sold'"
+                                   decoration-bf="state =='Offer Accepted'">
                 <field name="name" string="Title"/>
+                <field name="property_type_id" string="Property Type"/>
                 <field name="postcode" string="Postcode"/>
+                <field name="tag_ids" string="Tag" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="bedrooms" string="Bedrooms"/>
                 <field name="living_area" string="Living Area (sqm)"/>
                 <field name="expected_price" string="Expected Price"/>
                 <field name="selling_price" string="Selling Price"/>
-                <field name="date_availability" string="Available Date"/>        
+                <field name="date_availability" string="Available Date" />        
+                <field name="state" string="Status" />        
             </list>
         </field>
     </record>
@@ -41,20 +33,24 @@
         <field name="arch" type="xml">
             <form string="Test" >
                 <header>
-                    <button name="sold_property" type="object" string="SOLD"/>
-                    <button name="cancel_property" type="object" string="Cancel"/>
+                    <button name="sold_property" type="object" string="SOLD" invisible="state in ('Sold', 'Cancelled')"/>
+                    <button name="cancel_property" type="object" string="Cancel" invisible="state in ('Sold','Cancelled')"/>
+
+                    <group>
+                        <field name="statusBarOfProperty" widget="statusbar" string=""/>
+                    </group>
                 </header>
                 <sheet>
                     <field name="name" class="fs-1 m-3"/>  
                     <group>
-                        <field name="tag_ids" string="" widget="many2many_tags" />                    
+                        <field name="tag_ids" string="" widget="many2many_tags" options="{'color_field': 'color'}"/>                    
                     </group>
                              
                     <group class="ms-2">
-                        <field name="state" String="Status"/>
-                        <field name="property_type_id"/>
+                        <field name="state" String="Status" invisible="1"/>
+                        <field name="property_type_id" options="{'no_create': True, 'no_open': True}"/>
                         <field name="postcode"/>
-                        <field name="date_availability"/>
+                        <field name="date_availability" />
                         <field name="expected_price"/>
                         <field name="selling_price"/>
                         <field name="best_price"/>
@@ -70,8 +66,8 @@
                                 <field name="facades"/>
                                 <field name="garage"/>
                                 <field name="garden"/>
-                                <field name="garden_area"/>
-                                <field name="garden_orientation"/>
+                                <field name="garden_area" invisible="not garden"/>
+                                <field name="garden_orientation" invisible="not garden"/>
                                 <field name="total_area"/>
                             </group>
                             
@@ -86,18 +82,19 @@
                             
                         </page>
 
-                         <page string="Offers" class="ms-3">
-                                <field name="offer_ids">
-                                    <list string="Offers" >
-                                        <field name="price" string="Price"/>
-                                        <field name="partner_id" string="Partner"/>
-                                        <field name="validity" String="Validity(Days)"/>
-                                        <field name="date_deadline" String="Deadline"/>
-                                        <button name="buyer_conform" type="object" icon="fa-check" title="Accept"/>
-                                        <button name="cancel_buyer" type="object" icon="fa-times" title="Refuse"/>
-                                        <field name="status" string="Status"/>
-                                    </list>
-                                </field>  
+                        <page string="Offers" class="ms-3">
+                            <field name="offer_ids" readonly="is_offer_readonly">
+                                <list string="Offers" editable="bottom"  decoration-success="status == 'Accepted'"
+                                                                        decoration-danger="status == 'Refused'">
+                                    <field name="price" string="Price"/>
+                                    <field name="partner_id" string="Partner"/>
+                                    <field name="validity" string="Validity(Days)"/>
+                                    <field name="date_deadline" string="Deadline"/>
+                                    <button name="buyer_conform" type="object" icon="fa-check" title="Accept" invisible="status in ('Accepted','Refused')" reload="1"/>
+                                    <button name="cancel_buyer" type="object" icon="fa-times" title="Refuse" invisible="status in ('Accepted','Refused')" reload="1"/>
+                                    <field name="status" string="Status" invisible="1"/>
+                                </list>
+                            </field>  
                         </page>
                     </notebook>
                 </sheet>
@@ -110,6 +107,11 @@
         <field name="model">estate_property</field>
         <field name="arch" type="xml">
             <search>
+                <field name="living_area" filter_domain="[('living_area','>',self)]" />
+                <filter name="state" domain="['|',('state','=','New'),('state','=','Offer Received')]" />
+                <separator/>
+                <filter name="Available" domain="[('state','=','New')]" />
+                
                 <field name="name" string="Title"/>
                 <field name="postcode" string="Postcode"/>
                 <field name="bedrooms" string="Bedrooms"/>
@@ -117,8 +119,6 @@
                 <field name="expected_price" string="Expected Price"/>
                 <field name="facades" string="Facades"/>
 
-                <filter name="state" domain="['|',('state','=','New'),('state','=','Offer Received')]" />
-                <separator/>
                 <group>
                     <filter name="Postcode" context="{'group_by':'postcode', 'residual_visible':True}"/>
                 </group>

@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 class Property(models.Model):
     _name = 'estate_property'
     _description='This table for estate property'
+    _order ="id desc"
 
 
     name = fields.Char(required = True)
@@ -32,6 +33,8 @@ class Property(models.Model):
         required = True,copy = False,default = 'New')
 
     property_type_id = fields.Many2one('estate_property_type',string="Property Type")
+    property_type_sequence = fields.Integer(related='property_type_id.sequence',store=True)
+
     seller_id = fields.Many2one('res.users', string='Salesperson', default=lambda self: self.env.user)
     buyer_id  = fields.Many2one('res.partner', string='Buyer', copy=False)
     tag_ids = fields.Many2many('estate_property_tag',string="Property Tag")
@@ -42,6 +45,17 @@ class Property(models.Model):
     total_area = fields.Integer(compute="_compute_total_area")
     best_price = fields.Float(compute="_compute_best_price",default = 0)
 
+    is_offer_readonly = fields.Boolean(compute="_compute_is_offer_readonly", store=False)
+
+
+    statusBarOfProperty = fields.Selection([
+        ('New','New'),
+        ('Offer Received','Offer Received'),
+        ('Offer Accepted','Offer Accepted'),
+        ('Sold','Sold')],
+        required = True, copy = False,default = 'New'
+        )
+
     @api.depends('living_area','garden_area')
     def _compute_total_area(self):
         for record in self:
@@ -51,6 +65,9 @@ class Property(models.Model):
     def _compute_best_price(self):
         for record in self:
             record.best_price = max(record.offer_ids.mapped('price'),default = 0.0)
+            if record.offer_ids and record.statusBarOfProperty == 'New':
+                record.statusBarOfProperty = 'Offer Received'
+                record.state = 'Offer Received'
             
 
     @api.onchange('garden')
@@ -68,6 +85,8 @@ class Property(models.Model):
         for record in self:
             if record.state == 'Cancelled':
                 raise UserError("Canceled Property Cannot be Sold") #it is good practice??? ask to Sir
+            record.state = 'Sold'
+            record.statusBarOfProperty = 'Sold'
 
     def cancel_property(self):
         for record in self:
@@ -85,3 +104,10 @@ class Property(models.Model):
             if record.selling_price != 0:
                 if record.selling_price < (record.expected_price) * 0.9:
                         raise ValidationError("The Selling Price must be grater than 90% of expected price")
+                
+    
+    @api.depends('state')
+    def _compute_is_offer_readonly(self):
+        for record in self:
+            record.is_offer_readonly = record.state in ['Offer Accepted','Sold','Cancelled']
+            

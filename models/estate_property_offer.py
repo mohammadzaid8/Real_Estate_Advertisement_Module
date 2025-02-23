@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 
 class PropertyOffer(models.Model):
     _name="estate_property_offer"
+    _order="price desc"
 
     price = fields.Float()
     status = fields.Selection([('Accepted','Accepted'),('Refused','Refused')],copy = False)
@@ -13,7 +14,10 @@ class PropertyOffer(models.Model):
     date_deadline = fields.Date(string="Date Of DeadLine", store=True,compute="_compute_date_deadline",inverse="_inverse_date_deadline")
 
     partner_id = fields.Many2one('res.partner',string = "Partners",required=True)
-    property_id = fields.Many2one('estate_property',string="Property Name",required = True)
+    property_id = fields.Many2one('estate_property',string="Property Name",required = True,ondelete='cascade')
+
+    property_type_id = fields.Many2one('estate_property_type',related="property_id.property_type_id",store=True)
+
 
     @api.depends('validity')
     def _compute_date_deadline(self):
@@ -34,6 +38,8 @@ class PropertyOffer(models.Model):
             record.status = 'Accepted'
             record.property_id.selling_price = record.price
             record.property_id.buyer_id = record.partner_id
+            record.property_id.statusBarOfProperty = 'Offer Accepted'
+            record.property_id.state='Offer Accepted'
 
     def cancel_buyer(self):
         for record in self:
@@ -43,15 +49,11 @@ class PropertyOffer(models.Model):
 
             if not accepted_offers:
                 record.property_id.selling_price = 0.0
+                record.property_id.statusBarOfProperty = 'Offer Received'
 
-            
+
     _sql_constraints = [
        ('Check_price','CHECK(price >= 0)','An Offer Price Must be Positive')
     ]
 
-    # @api.constrains('property_id')
-    # def check_price(self):
-    #     for record in self:
-    #         if record.property_id.selling_price:
-    #             if record.property_id.selling_price < ((record.property_id.expected_price) * 9) / 10:
-    #                 raise ValidationError("The Selling Price must be grater than 90% of expected price")
+       
