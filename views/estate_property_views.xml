@@ -21,7 +21,7 @@
                 <field name="living_area" string="Living Area (sqm)"/>
                 <field name="expected_price" string="Expected Price"/>
                 <field name="selling_price" string="Selling Price"/>
-                <field name="date_availability" string="Available Date" />        
+                <field name="date_availability" string="Available Date" optional='True'/>        
                 <field name="state" string="Status" />        
             </list>
         </field>
@@ -33,12 +33,9 @@
         <field name="arch" type="xml">
             <form string="Test" >
                 <header>
-                    <button name="sold_property" type="object" string="SOLD" invisible="state in ('Sold', 'Cancelled')"/>
+                    <button name="sold_property" type="object" string="SOLD" invisible="state not in ('Offer Accepted')" class="oe_highlight"/>
                     <button name="cancel_property" type="object" string="Cancel" invisible="state in ('Sold','Cancelled')"/>
-
-                    <group>
-                        <field name="statusBarOfProperty" widget="statusbar" string=""/>
-                    </group>
+                    <field name="statusBarOfProperty" widget="statusbar" string=""/> 
                 </header>
                 <sheet>
                     <field name="name" class="fs-1 m-3"/>  
@@ -83,7 +80,7 @@
                         </page>
 
                         <page string="Offers" class="ms-3">
-                            <field name="offer_ids" readonly="is_offer_readonly">
+                            <field name="offer_ids" readonly="state in ['Offer Accepted','Sold','Cancelled']">
                                 <list string="Offers" editable="bottom"  decoration-success="status == 'Accepted'"
                                                                         decoration-danger="status == 'Refused'">
                                     <field name="price" string="Price"/>
@@ -92,7 +89,6 @@
                                     <field name="date_deadline" string="Deadline"/>
                                     <button name="buyer_conform" type="object" icon="fa-check" title="Accept" invisible="status in ('Accepted','Refused')" reload="1"/>
                                     <button name="cancel_buyer" type="object" icon="fa-times" title="Refuse" invisible="status in ('Accepted','Refused')" reload="1"/>
-                                    <field name="status" string="Status" invisible="1"/>
                                 </list>
                             </field>  
                         </page>

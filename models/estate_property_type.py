@@ -3,6 +3,7 @@ from odoo import fields,models,api
 class PropertyType(models.Model):
     _name="estate_property_type"
     _order="name"
+    _description="This is property Type section"
 
     name = fields.Char(required=True)
     sequence = fields.Integer(store=True , default = 0)

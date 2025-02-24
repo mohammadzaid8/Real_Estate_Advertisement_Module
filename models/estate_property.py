@@ -40,12 +40,9 @@ class Property(models.Model):
     tag_ids = fields.Many2many('estate_property_tag',string="Property Tag")
 
     offer_ids = fields.One2many('estate_property_offer', 'property_id', string = "Offers for the sale")
-    
 
     total_area = fields.Integer(compute="_compute_total_area")
-    best_price = fields.Float(compute="_compute_best_price",default = 0)
-
-    is_offer_readonly = fields.Boolean(compute="_compute_is_offer_readonly", store=False)
+    best_price = fields.Float(compute="_compute_best_price",default = 0 ,store=True)
 
 
     statusBarOfProperty = fields.Selection([
@@ -106,8 +103,10 @@ class Property(models.Model):
                         raise ValidationError("The Selling Price must be grater than 90% of expected price")
                 
     
-    @api.depends('state')
-    def _compute_is_offer_readonly(self):
+    @api.ondelete(at_uninstall=False)
+    def unlink_prevent_state(self):
         for record in self:
-            record.is_offer_readonly = record.state in ['Offer Accepted','Sold','Cancelled']
-            
+            if record.state not in['New','Cancelled']:
+                raise UserError("You can't delete offer in this state")
+
+   

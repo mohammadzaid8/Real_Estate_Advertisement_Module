@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record model="ir.actions.act_window" id="show_offer_list_action">
+    <record id="show_offer_list_action" model="ir.actions.act_window" >
         <field name="name">Applications</field>
         <field name="res_model">estate_property_offer</field>
         <field name="view_mode">list,form</field>
         <field name="domain">[('property_type_id', '=', active_id)]</field>
-        #this codition is not understand by me
+        <!-- this codition is not understand by me -->
     </record>
 
     <record id="view_estate_property_offer_list" model="ir.ui.view">

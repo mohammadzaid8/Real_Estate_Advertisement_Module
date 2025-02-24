@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 class PropertyOffer(models.Model):
     _name="estate_property_offer"
     _order="price desc"
+    _description="This is offer section"
 
     price = fields.Float()
     status = fields.Selection([('Accepted','Accepted'),('Refused','Refused')],copy = False)
@@ -35,11 +36,14 @@ class PropertyOffer(models.Model):
         
     def buyer_conform(self):
         for record in self:
-            record.status = 'Accepted'
-            record.property_id.selling_price = record.price
-            record.property_id.buyer_id = record.partner_id
-            record.property_id.statusBarOfProperty = 'Offer Accepted'
-            record.property_id.state='Offer Accepted'
+            if record.property_id.state == 'Offer Accepted':
+                raise ValidationError("Only Accept One Offer")
+            else:
+                record.status = 'Accepted'
+                record.property_id.selling_price = record.price
+                record.property_id.buyer_id = record.partner_id
+                record.property_id.statusBarOfProperty = 'Offer Accepted'
+                record.property_id.state='Offer Accepted'
 
     def cancel_buyer(self):
         for record in self:
@@ -56,4 +60,18 @@ class PropertyOffer(models.Model):
        ('Check_price','CHECK(price >= 0)','An Offer Price Must be Positive')
     ]
 
-       
+
+    def create(self, vals_list):
+        for vals in vals_list:
+            property_id = vals.get('property_id')
+
+            if property_id:
+                property_record = self.env['estate_property'].browse(property_id)
+
+                if property_record.exists():
+                    best_price = max(property_record.offer_ids.mapped('price'), default=0.0)
+
+                    if vals.get('price', 0.0) <= best_price:
+                        raise ValidationError("Your offer must be higher than the current best price!")
+
+        return super().create(vals_list)
