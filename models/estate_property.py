@@ -1,5 +1,5 @@
 from odoo import fields,models,api
-from odoo.tools import date_utils
+from odoo.tools import date_utils,float_compare,float_is_zero
 from odoo.exceptions import UserError
 
 from odoo.exceptions import ValidationError
@@ -9,6 +9,11 @@ class Property(models.Model):
     _description='This table for estate property'
     _order ="id desc"
 
+    _sql_constraints=[
+        ('unique_name','UNIQUE(name)','This Property Name is Already Exists!!'),
+        ('check_expected_price','CHECK(expected_price >= 0)','A Property Expected Price Must be Positive'),
+        ('check_selling_price','CHECK(selling_price >= 0)','A Property Selling Price Must be Positive')
+    ]
 
     name = fields.Char(required = True)
     description = fields.Text()
@@ -24,7 +29,7 @@ class Property(models.Model):
     garden_area = fields.Integer()
     garden_orientation = fields.Selection([
         ('East','East'),('West','West'),('North','North'),('south','South')
-    ])
+        ])
     active = fields.Boolean(default = True)
     state = fields.Selection([
         ('New','New'),('Offer Received','Offer Received'),
@@ -43,7 +48,6 @@ class Property(models.Model):
 
     total_area = fields.Integer(compute="_compute_total_area")
     best_price = fields.Float(compute="_compute_best_price",default = 0 ,store=True)
-
 
     statusBarOfProperty = fields.Selection([
         ('New','New'),
@@ -78,6 +82,20 @@ class Property(models.Model):
                 record.garden_orientation = None
 
 
+    @api.constrains('selling_price')
+    def _check_selling_price(self):
+        for record in self:
+            if not float_is_zero(record.selling_price,precision_rounding=2):
+                if float_compare(record.selling_price,record.expected_price * 0.9,precision_digits=2) < 0:
+                    raise ValidationError("The Selling Price must be grater than 90% of expected price")        
+    
+    @api.ondelete(at_uninstall=False)
+    def unlink_prevent_state(self):
+        for record in self:
+            if record.state not in['New','Cancelled']:
+                raise UserError("You can't delete offer in this state")
+
+
     def sold_property(self):
         for record in self:
             if record.state == 'Cancelled':
@@ -88,25 +106,4 @@ class Property(models.Model):
     def cancel_property(self):
         for record in self:
             record.state = 'Cancelled'
-
-    _sql_constraints=[
-        ('unique_name','UNIQUE(name)','This Property Name is Already Exists!!'),
-        ('check_expected_price','CHECK(expected_price >= 0)','A Property Expected Price Must be Positive'),
-        ('check_selling_price','CHECK(selling_price >= 0)','A Property Selling Price Must be Positive')
-    ]
-
-    @api.constrains('selling_price')
-    def _check_selling_price(self):
-        for record in self:
-            if record.selling_price != 0:
-                if record.selling_price < (record.expected_price) * 0.9:
-                        raise ValidationError("The Selling Price must be grater than 90% of expected price")
-                
-    
-    @api.ondelete(at_uninstall=False)
-    def unlink_prevent_state(self):
-        for record in self:
-            if record.state not in['New','Cancelled']:
-                raise UserError("You can't delete offer in this state")
-
    
