@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record id="estate_sold_property_wizard_list" model="ir.ui.view">
+            <field name="name">estate.sold.property.wizard.list</field>
+            <field name="model">estate.sold.property.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                  <sheet>
+                        <group >
+                            <field name="property_ids" readonly="1" string="">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="expected_price"/>
+                                    <field name="selling_price"/>
+                                    <field name="buyer_id"/>
+                                    <field name="seller_id"/>
+                                </list>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="estate_wizard_model_sold_property_action" model="ir.actions.act_window">
+            <field name="name">Sold Property</field>
+            <field name="res_model">estate.sold.property.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

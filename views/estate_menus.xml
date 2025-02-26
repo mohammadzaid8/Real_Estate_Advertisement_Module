@@ -9,6 +9,9 @@
             <menuitem id="estate_property_type_model_menu_action" action="estate_model_action_property_type" />
             <menuitem id="estate_property_tag_menu_action" action="estate_model_action_property_tag" />
         </menuitem>
-
+        
+        <menuitem id="estate_third_menu" name="Sold Property">
+            <menuitem id="estate_sold_property_wizard_menu_action" action="estate_wizard_model_sold_property_action" sequence="10"/>
+        </menuitem>
     </menuitem>
 </odoo>

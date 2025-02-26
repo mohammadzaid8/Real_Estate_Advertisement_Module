@@ -1,14 +1,15 @@
 from odoo import fields,models,api
 from odoo.tools import date_utils
-from odoo.exceptions import UserError
-
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError,ValidationError
 
 class Property(models.Model):
     _name = 'estate_property'
     _description='This table for estate property'
     _order ="id desc"
-
+    _sql_constraints=[
+        ('check_expected_price','CHECK(expected_price >= 0)','A Property Expected Price Must be Positive'),
+        ('check_selling_price','CHECK(selling_price >= 0)','A Property Selling Price Must be Positive')
+    ]
 
     name = fields.Char(required = True)
     description = fields.Text()
@@ -38,13 +39,9 @@ class Property(models.Model):
     seller_id = fields.Many2one('res.users', string='Salesperson', default=lambda self: self.env.user)
     buyer_id  = fields.Many2one('res.partner', string='Buyer', copy=False)
     tag_ids = fields.Many2many('estate_property_tag',string="Property Tag")
-
     offer_ids = fields.One2many('estate_property_offer', 'property_id', string = "Offers for the sale")
-
     total_area = fields.Integer(compute="_compute_total_area")
     best_price = fields.Float(compute="_compute_best_price",default = 0 ,store=True)
-
-
     statusBarOfProperty = fields.Selection([
         ('New','New'),
         ('Offer Received','Offer Received'),
@@ -66,7 +63,6 @@ class Property(models.Model):
                 record.statusBarOfProperty = 'Offer Received'
                 record.state = 'Offer Received'
             
-
     @api.onchange('garden')
     def _change_gardenOrientation_gardenArea(self):
         for record in self:
@@ -77,31 +73,12 @@ class Property(models.Model):
                 record.garden_area = None
                 record.garden_orientation = None
 
-
-    def sold_property(self):
-        for record in self:
-            if record.state == 'Cancelled':
-                raise UserError("Canceled Property Cannot be Sold") #it is good practice??? ask to Sir
-            record.state = 'Sold'
-            record.statusBarOfProperty = 'Sold'
-
-    def cancel_property(self):
-        for record in self:
-            record.state = 'Cancelled'
-
-    _sql_constraints=[
-        ('unique_name','UNIQUE(name)','This Property Name is Already Exists!!'),
-        ('check_expected_price','CHECK(expected_price >= 0)','A Property Expected Price Must be Positive'),
-        ('check_selling_price','CHECK(selling_price >= 0)','A Property Selling Price Must be Positive')
-    ]
-
     @api.constrains('selling_price')
     def _check_selling_price(self):
         for record in self:
             if record.selling_price != 0:
                 if record.selling_price < (record.expected_price) * 0.9:
-                        raise ValidationError("The Selling Price must be grater than 90% of expected price")
-                
+                        raise ValidationError("The Selling Price must be grater than 90% of expected price")          
     
     @api.ondelete(at_uninstall=False)
     def unlink_prevent_state(self):
@@ -109,4 +86,14 @@ class Property(models.Model):
             if record.state not in['New','Cancelled']:
                 raise UserError("You can't delete offer in this state")
 
+    def sold_property(self):
+        for record in self:
+            if record.state == 'Cancelled':
+                raise UserError("Canceled Property Cannot be Sold") 
+            record.state = 'Sold'
+            record.statusBarOfProperty = 'Sold'
+
+    def cancel_property(self):
+        for record in self:
+            record.state = 'Cancelled'
    

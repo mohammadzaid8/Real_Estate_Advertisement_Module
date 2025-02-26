@@ -1,13 +1,16 @@
+from datetime import datetime,timedelta,date
+
 from odoo import fields,models,api
 from odoo.tools import date_utils 
-
-from datetime import datetime,timedelta,date
 from odoo.exceptions import ValidationError
 
 class PropertyOffer(models.Model):
     _name="estate_property_offer"
     _order="price desc"
     _description="This is offer section"
+    _sql_constraints = [
+       ('Check_price','CHECK(price >= 0)','An Offer Price Must be Positive')
+    ]
 
     price = fields.Float()
     status = fields.Selection([('Accepted','Accepted'),('Refused','Refused')],copy = False)
@@ -34,6 +37,22 @@ class PropertyOffer(models.Model):
             create_date = record.create_date.date() if record.create_date else date.today()
             record.validity = (record.date_deadline - create_date).days
         
+
+    def create(self, vals_list):
+        for vals in vals_list:
+            property_id = vals.get('property_id')
+
+            if property_id:
+                property_record = self.env['estate_property'].browse(property_id)
+
+                if property_record.exists():
+                    best_price = max(property_record.offer_ids.mapped('price'), default=0.0)
+
+                    if vals.get('price', 0.0) <= best_price:
+                        raise ValidationError("Your offer must be higher than the current best price!")
+
+        return super().create(vals_list)
+    
     def buyer_conform(self):
         for record in self:
             if record.property_id.state == 'Offer Accepted':
@@ -55,23 +74,3 @@ class PropertyOffer(models.Model):
                 record.property_id.selling_price = 0.0
                 record.property_id.statusBarOfProperty = 'Offer Received'
 
-
-    _sql_constraints = [
-       ('Check_price','CHECK(price >= 0)','An Offer Price Must be Positive')
-    ]
-
-
-    def create(self, vals_list):
-        for vals in vals_list:
-            property_id = vals.get('property_id')
-
-            if property_id:
-                property_record = self.env['estate_property'].browse(property_id)
-
-                if property_record.exists():
-                    best_price = max(property_record.offer_ids.mapped('price'), default=0.0)
-
-                    if vals.get('price', 0.0) <= best_price:
-                        raise ValidationError("Your offer must be higher than the current best price!")
-
-        return super().create(vals_list)

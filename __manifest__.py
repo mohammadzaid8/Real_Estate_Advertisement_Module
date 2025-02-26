@@ -1,16 +1,17 @@
 {
     'name':'estate',
+    'summary':'Real Estate Advertisment',
     'installable': True,
     'application': True,
 
-
     'data':[
-            'security/ir.model.access.csv',
-            'views/estate_property_views.xml',
-            'views/estate_menus.xml',
-            'views/estate_property_type_view.xml',
-            'views/estate_property_tag_view.xml',
-            'views/estate_property_show_offer_list_view.xml',
-            'views/res_user_view.xml'
-        ]
+        'security/ir.model.access.csv',
+        'views/estate_property_show_offer_list_view.xml',
+        'views/estate_property_type_view.xml',
+        'views/estate_property_tag_view.xml',
+        'views/estate_property_views.xml',
+        'views/res_user_view.xml',
+        'wizard/estate_sold_property_wizard_views.xml',
+        'views/estate_menus.xml'
+    ]
 }
