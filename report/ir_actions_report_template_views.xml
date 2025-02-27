@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_property_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="row mt32 mb32">
+                        <div class="col-12">
+                            <h2 class="text-center">Property Details Report</h2>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <strong>Property Name:</strong>
+                            <span t-field="docs.name"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Property Type:</strong>
+                            <span t-field="docs.property_type_id.name"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <strong>Expected Price:</strong>
+                            <span t-field="docs.expected_price"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Selling Price:</strong>
+                            <span t-field="docs.selling_price"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <strong>Bedrooms:</strong>
+                            <span t-field="docs.bedrooms"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Living Area:</strong>
+                            <span t-field="docs.living_area"/> sqm
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <strong>Description:</strong>
+                            <p t-field="docs.description"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4" t-if="docs.offer_ids">
+                        <div class="col-12">
+                            <h3>Offers</h3>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Partner</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="docs.offer_ids" t-as="offer">
+                                        <td><span t-field="offer.partner_id.name"/></td>
+                                        <td><span t-field="offer.price"/></td>
+                                        <td><span t-field="offer.status"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -11,7 +11,11 @@
         </menuitem>
         
         <menuitem id="estate_third_menu" name="Sold Property">
-            <menuitem id="estate_sold_property_wizard_menu_action" action="estate_wizard_model_sold_property_action" sequence="10"/>
+            <menuitem id="estate_sold_property_wizard_menu_action" action="estate_wizard_model_sold_property_action" />
+        </menuitem>
+
+        <menuitem id="estate_four_menu" name="ORM Fields">
+            <menuitem id="estate_orm_read_wizard_menu_action" action="estate_wizard_model_read_browse_action"/>
         </menuitem>
     </menuitem>
 </odoo>

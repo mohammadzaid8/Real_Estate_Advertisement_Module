@@ -1,0 +1,580 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* estate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-26 12:46+0000\n"
+"PO-Revision-Date: 2025-02-26 12:46+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_kanban
+msgid "<strong>Best Price:</strong>"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_kanban
+msgid "<strong>Expected Price:</strong>"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_kanban
+msgid "<strong>Selling Price:</strong>"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.constraint,message:estate.constraint_estate_property_check_expected_price
+msgid "A Property Expected Price Must be Positive"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.constraint,message:estate.constraint_estate_property_check_selling_price
+msgid "A Property Selling Price Must be Positive"
+msgstr ""
+
+#. module: estate
+#: model:ir.actions.act_window,name:estate.estate_model_action
+#: model:ir.ui.menu,name:estate.estate_model_menu_action
+msgid "ADD properties "
+msgstr "إضافة عقارات"
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Accept"
+msgstr "قبول"
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property_offer__status__accepted
+msgid "Accepted"
+msgstr "مقبول"
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: estate
+#: model:ir.ui.menu,name:estate.estate_first_menu
+msgid "Advertisement"
+msgstr "إعلان"
+
+#. module: estate
+#: model:ir.model.constraint,message:estate.constraint_estate_property_offer_Check_price
+msgid "An Offer Price Must be Positive"
+msgstr ""
+
+#. module: estate
+#: model:ir.actions.act_window,name:estate.show_offer_list_action
+msgid "Applications"
+msgstr "الطلبات"
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_search
+msgid "Available"
+msgstr "متاح"
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Available Date"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__bedrooms
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_search
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Bedrooms"
+msgstr "غرف النوم"
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__best_price
+msgid "Best Price"
+msgstr "أفضل سعر"
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__buyer_id
+msgid "Buyer"
+msgstr "المشتري"
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__state__cancelled
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+msgid "Channel"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__create_uid
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__create_uid
+#: model:ir.model.fields,field_description:estate.field_estate_property_tag__create_uid
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__create_uid
+#: model:ir.model.fields,field_description:estate.field_estate_read_browse_property_wizard__create_uid
+#: model:ir.model.fields,field_description:estate.field_estate_sold_property_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__create_date
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__create_date
+#: model:ir.model.fields,field_description:estate.field_estate_property_tag__create_date
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__create_date
+#: model:ir.model.fields,field_description:estate.field_estate_read_browse_property_wizard__create_date
+#: model:ir.model.fields,field_description:estate.field_estate_sold_property_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__date_availability
+msgid "Date Availability"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__date_deadline
+msgid "Date Of DeadLine"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Deadline"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__description
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Description"
+msgstr "الوصف"
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__display_name
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__display_name
+#: model:ir.model.fields,field_description:estate.field_estate_property_tag__display_name
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__display_name
+#: model:ir.model.fields,field_description:estate.field_estate_read_browse_property_wizard__display_name
+#: model:ir.model.fields,field_description:estate.field_estate_sold_property_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__garden_orientation__east
+msgid "East"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_read_browse_property_wizard__input_id
+msgid "Enter id of search data"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__expected_price
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_search
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Expected Price"
+msgstr "السعر المتوقع"
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__facades
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_search
+msgid "Facades"
+msgstr ""
+
+#. module: estate
+#: model:ir.actions.act_window,name:estate.estate_wizard_model_read_browse_action
+#: model:ir.ui.menu,name:estate.estate_orm_read_wizard_menu_action
+msgid "Filter Record"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__garage
+msgid "Garage"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__garden
+msgid "Garden"
+msgstr "حديقة"
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__garden_area
+msgid "Garden Area"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__garden_orientation
+msgid "Garden Orientation"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__id
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__id
+#: model:ir.model.fields,field_description:estate.field_estate_property_tag__id
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__id
+#: model:ir.model.fields,field_description:estate.field_estate_read_browse_property_wizard__id
+#: model:ir.model.fields,field_description:estate.field_estate_sold_property_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_res_users__property_ids
+msgid "Inherent Salesperson"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__write_uid
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__write_uid
+#: model:ir.model.fields,field_description:estate.field_estate_property_tag__write_uid
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__write_uid
+#: model:ir.model.fields,field_description:estate.field_estate_read_browse_property_wizard__write_uid
+#: model:ir.model.fields,field_description:estate.field_estate_sold_property_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__write_date
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__write_date
+#: model:ir.model.fields,field_description:estate.field_estate_property_tag__write_date
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__write_date
+#: model:ir.model.fields,field_description:estate.field_estate_read_browse_property_wizard__write_date
+#: model:ir.model.fields,field_description:estate.field_estate_sold_property_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__living_area
+msgid "Living Area"
+msgstr "المساحة المعيشية"
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_search
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Living Area (sqm)"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Living_area(sqm)"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__name
+#: model:ir.model.fields,field_description:estate.field_estate_property_tag__name
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__name
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_kanban
+msgid "Name"
+msgstr "الاسم"
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__state__new
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__statusBarOfProperty__new
+msgid "New"
+msgstr "جديد"
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__garden_orientation__north
+msgid "North"
+msgstr ""
+
+#. module: estate
+#: model:ir.ui.menu,name:estate.estate_four_menu
+msgid "ORM Fields"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__state__offer_accepted
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__statusBarOfProperty__offer_accepted
+msgid "Offer Accepted"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__state__offer_received
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__statusBarOfProperty__offer_received
+msgid "Offer Received"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__offer_ids
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+#: model_terms:ir.ui.view,arch_db:estate.view_estate_property_type_form
+msgid "Offers"
+msgstr "العروض"
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__offer_ids
+msgid "Offers for the sale"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Other Info"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Partner"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__partner_id
+msgid "Partners"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__postcode
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_search
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Postcode"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__price
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Price"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__property_ids
+#: model_terms:ir.ui.view,arch_db:estate.view_estate_property_type_form
+msgid "Properties"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_read_browse_property_wizard__property_ids
+msgid "Property"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_read_browse_property_wizard__dataOfId
+#: model_terms:ir.ui.view,arch_db:estate.estate_read_write_property_wizard_form
+msgid "Property Details"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__property_id
+msgid "Property Name"
+msgstr ""
+
+#. module: estate
+#: model:ir.actions.act_window,name:estate.estate_model_action_property_tag
+#: model:ir.model.fields,field_description:estate.field_estate_property__tag_ids
+#: model:ir.ui.menu,name:estate.estate_property_tag_menu_action
+msgid "Property Tag"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__property_type_id
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__property_type_id
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Property Type"
+msgstr ""
+
+#. module: estate
+#: model:ir.actions.act_window,name:estate.estate_model_action_property_type
+#: model:ir.ui.menu,name:estate.estate_property_type_model_menu_action
+msgid "Property Types"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Real Estate Properties"
+msgstr ""
+
+#. module: estate
+#: model:ir.model,name:estate.model_estate_sold_property_wizard
+msgid "Real Estate Sold Property"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Refuse"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property_offer__status__refused
+msgid "Refused"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "SOLD"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__seller_id
+msgid "Salesperson"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__selling_price
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Selling Price"
+msgstr "سعر البيع"
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__property_type_sequence
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: estate
+#: model:ir.ui.menu,name:estate.estate_second_menu
+msgid "Settings"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__state__sold
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__statusBarOfProperty__sold
+msgid "Sold"
+msgstr "تم البيع"
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_sold_property_wizard__property_ids
+msgid "Sold Properties"
+msgstr ""
+
+#. module: estate
+#: model:ir.actions.act_window,name:estate.estate_wizard_model_sold_property_action
+#: model:ir.ui.menu,name:estate.estate_sold_property_wizard_menu_action
+#: model:ir.ui.menu,name:estate.estate_third_menu
+msgid "Sold Property"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__garden_orientation__south
+msgid "South"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__state
+msgid "State"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__status
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Status"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__statusBarOfProperty
+msgid "Statusbarofproperty"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Tag"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Test"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.constraint,message:estate.constraint_estate_property_tag_unique_name
+msgid "This Property Tag is Already Exists!!"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.constraint,message:estate.constraint_estate_property_type_unique_name
+msgid "This Property Type is Already Exists!!!"
+msgstr ""
+
+#. module: estate
+#: model:ir.model,name:estate.model_estate_property_offer
+msgid "This is offer section"
+msgstr ""
+
+#. module: estate
+#: model:ir.model,name:estate.model_estate_property_type
+msgid "This is property Type section"
+msgstr ""
+
+#. module: estate
+#: model:ir.model,name:estate.model_estate_property_tag
+msgid "This is property tag section"
+msgstr ""
+
+#. module: estate
+#: model:ir.model,name:estate.model_estate_property
+msgid "This table for estate property"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_list
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_search
+#: model_terms:ir.ui.view,arch_db:estate.res_users_view_form_inherit
+msgid "Title"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property__total_area
+msgid "Total Area"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__offer_count
+msgid "Total Count of offers"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_type__property_count
+msgid "Total Count of properties"
+msgstr ""
+
+#. module: estate
+#: model:ir.model,name:estate.model_res_users
+msgid "User"
+msgstr "المستخدم"
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_offer__validity
+msgid "Validity"
+msgstr ""
+
+#. module: estate
+#: model_terms:ir.ui.view,arch_db:estate.estate_model_action_form
+msgid "Validity(Days)"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields.selection,name:estate.selection__estate_property__garden_orientation__west
+msgid "West"
+msgstr ""
+
+#. module: estate
+#: model:ir.model.fields,field_description:estate.field_estate_property_tag__color
+msgid "color"
+msgstr ""
+
+#. module: estate
+#: model:ir.ui.menu,name:estate.estate_menus_root
+msgid "estate"
+msgstr ""
+
+#. module: estate
+#: model:ir.model,name:estate.model_estate_read_browse_property_wizard
+msgid "estate.read.browse.property.wizard"
+msgstr ""

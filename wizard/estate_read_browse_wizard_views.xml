@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="estate_read_write_property_wizard_form" model="ir.ui.view">
+        <field name="name">estate.read.browse.wizard.form</field>
+        <field name="model">estate.read.browse.property.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="input_id" />
+                    </group>
+                    <group string="Property Details" invisible="('input_id', '=', '0')">
+                        <field name="dataOfId" readonly="1"/>
+                        <field name="property_ids" readonly="1">
+                            <list>
+                                <field name="name"/>
+                                <field name="expected_price"/>
+                                <field name="state"/>
+                                <field name="property_type_id"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_wizard_model_read_browse_action" model="ir.actions.act_window">
+        <field name="name">Filter Record</field>
+        <field name="res_model">estate.read.browse.property.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+
+    </record>
+</odoo>

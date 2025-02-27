@@ -45,16 +45,20 @@
                 <sheet>
                     <field name="name" class="fs-1 m-3"/>  
                     <group>
-                        <field name="tag_ids" string="" widget="many2many_tags" options="{'color_field': 'color'}"/>                    
+                        <field name="tag_ids" string="" widget="many2many_tags" options="{'color_field': 'color'}" class="w-50"/>                    
                     </group>          
                     <group class="ms-2">
-                        <field name="state" String="Status" invisible="1"/>
-                        <field name="property_type_id" options="{'no_create': True, 'no_open': True}"/>
-                        <field name="postcode"/>
-                        <field name="date_availability" />
-                        <field name="expected_price"/>
-                        <field name="selling_price"/>
-                        <field name="best_price"/>
+                        <group>
+                            <field name="state" String="Status" invisible="1"/>
+                            <field name="property_type_id" options="{'no_create': True, 'no_open': True}" />
+                            <field name="postcode"/>
+                            <field name="date_availability" />
+                        </group>
+                        <group>
+                            <field name="expected_price"/>
+                            <field name="selling_price"/>
+                            <field name="best_price"/>
+                        </group>
                     </group>
                     <notebook >
                         <page string="Description" class="ms-3">
@@ -70,12 +74,6 @@
                                 <field name="total_area"/>
                             </group>       
                         </page>
-                         <page string="Other Info" class="ms-3">
-                            <group class="ms-3">
-                                <field name="seller_id"/>
-                                <field name="buyer_id"/>       
-                            </group> 
-                        </page>
                         <page string="Offers" class="ms-3">
                             <field name="offer_ids" readonly="state in ['Offer Accepted','Sold','Cancelled']">
                                 <list string="Offers" editable="bottom"  decoration-success="status == 'Accepted'"
@@ -88,6 +86,12 @@
                                     <button name="cancel_buyer" type="object" icon="fa-times" title="Refuse" invisible="status in ('Accepted','Refused')" reload="1"/>
                                 </list>
                             </field>  
+                        </page>
+                         <page string="Other Info" class="ms-3">
+                            <group class="ms-3">
+                                <field name="seller_id" readonly="1"/>
+                                <field name="buyer_id" readonly="1"/>       
+                            </group> 
                         </page>
                     </notebook>
                 </sheet>

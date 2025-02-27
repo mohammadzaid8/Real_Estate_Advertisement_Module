@@ -15,6 +15,13 @@ class PropertyType(models.Model):
     offer_ids = fields.One2many('estate_property_offer','property_type_id',string="Offers")
     offer_count = fields.Integer(compute="_compute_offer_count",string="Total Count of offers")
 
+    property_count = fields.Integer(compute="_compute_property_count",string="Total Count of properties")
+
+    @api.depends('property_ids')
+    def _compute_property_count(self):
+        for record in self:
+            record.property_count = self.env['estate_property'].search_count([('property_type_id', '=', record.id)])
+
     @api.depends('offer_ids')
     def _compute_offer_count(self):
         for record in self:

@@ -4,3 +4,4 @@ access_estate_property_type,estate_property_type,model_estate_property_type,base
 access_estate_property_tag,estate_property_tag,model_estate_property_tag,base.group_user,1,1,1,1
 access_estate_property_offer,estate_property_offer,model_estate_property_offer,base.group_user,1,1,1,1
 access_estate_sold_property_wizard,estate.sold.property.wizard,model_estate_sold_property_wizard,base.group_user,1,1,1,1
+access_estate_read_browse_property_wizard,estate.read.browse.property.wizard,model_estate_read_browse_property_wizard,base.group_user,1,1,1,1

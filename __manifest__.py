@@ -12,6 +12,13 @@
         'views/estate_property_views.xml',
         'views/res_user_view.xml',
         'wizard/estate_sold_property_wizard_views.xml',
-        'views/estate_menus.xml'
+        'wizard/estate_read_browse_wizard_views.xml',
+        'views/estate_menus.xml',
+        'report/ir_actions_report.xml',
+        'report/ir_actions_report_template_views.xml',
+    ],
+
+    "demo": [
+        "data/estate_demo.xml"
     ]
 }
